@@ -70,32 +70,13 @@ const arrayViajes = [
 ];
 const arrayDestinos = [
     {
-        id:1,
-        src:'assets/viajes/viajes-1.jpg',
-        alt :'viaje 1'
-    },
-    {
-        id:2,
-        src:'assets/viajes/viajes-2.jpg',
-        alt :'viaje 2'
-    },
-    {
-        id:3,
-        src:'assets/viajes/viajes-3.jpg',
-        alt :'viaje 3'
-    }
+        
 ];
 
 
 /* EVENTOS */
 
 /* FUNCIONES */
-/*const aleatorio = (indice) => {
-    const indice = '0' ;
-    console.log(Math.floor(Math.random(indice))) ;
-    }*/
-
-
 
 function aleatorio(){
   console.log (Math.floor(Math.random() * arrayBanners.length));
@@ -103,11 +84,11 @@ function aleatorio(){
 
 function pintarBanner() 
     {
-        const indice = (aleatorio()
+        function cambiarImagen() 
         {
-
-            (Math.floor(Math.random() * arrayBanners.length));
-        }) => pintarBanner(aleatorio);***********
+            $('#imagen').attr('src', aleatorio());
+        }
+    }
 
     const elemento = arrayBanners[0];
 
