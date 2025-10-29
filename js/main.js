@@ -1,13 +1,16 @@
 /* VARIABLES */
 /* capturar elementos DOM */
-const imagenBanner = document.querySelector('#bienvenidos img')
+const imagenBanner = document.querySelector('#bienvenidos img') //con querySelector aplica al primer elemento //
 /* Acceder al elemento del DOM para crear los artículos de viajes */
-const cajaCardsViajes = document.querySelector('#recomendados .flexContainer')
+const cajaCardsViajes = document.querySelector('#recomendados .flexContainer')//importante ser específicos y no ser generalista, si pusieramos sólo .flexContainer y metieran una foto ya no aplicaría//
  /*var fragment = documento.createDocumentFragment();
 
 
 /* Acceder al elemento del DOM para crear añadir los options */
-const opcionesdest = document.querySelector('#destinos .container');
+const opcionesDest = document.querySelector('#destinos select');
+console.log(opcionesDest,'opcionesDest');
+const urlBase = "assets";//todo lo que se reutilice hay qiue meter en variables, se crea la variable con la raíz de la capreta porque puede cambiar//
+const fragment = document.createDocumentFragment();
 
 const arrayBanners = [
     {
@@ -54,8 +57,10 @@ const arrayBanners = [
 const arrayViajes = [
     {
         id:1,
-        src:'assets/viajes/viajes-1.jpg',
-        alt :'viaje 1'
+        src:`${urlBase}/viajes/viajes-1.jpg`,
+        alt :'viaje 1',
+        titulo:'' ,
+        descripcion: '',//añadir más propiedades//
     },
     {
         id:2,
@@ -70,6 +75,21 @@ const arrayViajes = [
 ];
 const arrayDestinos = [
     {
+        id:1,
+        ciudad:'Burgos',
+        value: 'v18'
+    },
+    {
+        id:2,
+        ciudad:'Pamplona',
+        value: 'v19'
+    },
+    {
+        id:3,
+        ciudad:'Soria',
+        value: 'v20'
+    },
+
         
 ];
 
@@ -78,59 +98,50 @@ const arrayDestinos = [
 
 /* FUNCIONES */
 
-function aleatorio(){
-  console.log (Math.floor(Math.random() * arrayBanners.length));
+const aleatorio = (array) =>
+{
+  const indice = Math.floor(Math.random() * array.length);
+    return indice;
 }
 
-function pintarBanner() 
+const pintarBanner = (array) =>
     {
-        function cambiarImagen() 
-        {
-            $('#imagen').attr('src', aleatorio());
-        }
-    }
 
-    const elemento = arrayBanners[0];
+               
+        const indice = aleatorio (array);
+        const elemento = arrayBanners[indice];
+
+        imagenBanner.src = elemento.src;
+        imagenBanner.alt = elemento.src;
+
+        
+    }
+       
 
     // console.log(elemento.alt)
     // console.log(elemento.src)
-    imagenBanner.setAttribute('src', elemento.src);
+    /*cambiarImagen.setAttribute('src', elemento.src);
     imagenBanner.alt = elemento.alt;
-    // console.log(imagenBanner)
-}
+    // console.log(imagenBanner)*/
+
 
 const pintarCards =()=>{
     /* recorrer los elementos del array*/
    
-    arrayViajes.forEach(element => {
+    arrayViajes.forEach((element) => {
         const articleCaja = document.createElement("article");
         const divCaja =  document.createElement("div");
         const imgViaje1 =  document.createElement("img");
-        imgViaje1.src='assets/viajes/viajes-1.jpg';
-        imgViaje1.alt='viaje 1';
+        imgViaje1.src = element.src;
+        imgViaje1.alt= element.alt;
         const titulo1 =  document.createElement("h3");
-        titulo.textContent=`Viaje 1`;
+        titulo1.textContent=`Viaje 1`;
         const parrafo1 =  document.createElement("p");
-        parrafo.textContent=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`
-
-        const imgViaje2 =  document.createElement("img");
-        imgViaje2.src='assets/viajes/viajes-2.jpg';
-        imgViaje2.alt='viaje 2';
-        const titulo2 =  document.createElement("h3");
-        titulo.textContent=`Viaje 2`;
-        const parrafo2 =  document.createElement("p");
-        parrafo.textContent=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`
-        
-        const imgViaje3 =  document.createElement("img");
-        imgViaje3.src='assets/viajes/viajes-2.jpg';
-        imgViaje3.alt='viaje 3';
-        const titulo3 =  document.createElement("h3");
-        titulo.textContent=`Viaje 3`;
-        const parrafo3 =  document.createElement("p");
-        parrafo.textContent=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`
-        
-        divCaja.append(imgViaje1, imgViaje2,imgViaje3);
-        articleCaja.append(divCaja,titulo1,titulo2,titulo3,parrafo1,parrafo2,parrafo3)
+        parrafo1.textContent=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`
+       
+        //con newarticle es más visual//
+        divCaja.append(imgViaje1);
+        articleCaja.append(divCaja,titulo1,parrafo1)
 
 
         fragment.append(articleCaja);        
@@ -157,8 +168,16 @@ const pintarCards =()=>{
 }
 
 
-const pintarDestinos = {
+const pintarDestinos = () => {
+    arrayDestinos.forEach((element)=>{
+       const opcion = document.createElement('option');
+       opcion.value = element.value;
+       opcion.text = element.ciudad;
 
+       fragment.append(opcion)
+    }) 
+
+    opcionesDest.append(fragment)
 }
 
 
