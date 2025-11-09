@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+ 
 /* VARIABLES */
 /* capturar elementos DOM */
 const imagenBanner = document.querySelector('#bienvenidos img') //con querySelector aplica al primer elemento //
@@ -8,7 +10,7 @@ const cajaCardsViajes = document.querySelector('#recomendados .flexContainer')//
 
 /* Acceder al elemento del DOM para crear añadir los options */
 const opcionesDest = document.querySelector('#destinos select');
-console.log(opcionesDest,'opcionesDest');
+
 const urlBase = "assets";//todo lo que se reutilice hay qiue meter en variables, se crea la variable con la raíz de la capreta porque puede cambiar//
 const fragment = document.createDocumentFragment();
 
@@ -98,23 +100,18 @@ const arrayDestinos = [
 
 /* FUNCIONES */
 
-const aleatorio = (array) =>
+const aleatorio = (arrayBanners) =>
 {
-  const indice = Math.floor(Math.random() * array.length);
+  const indice = Math.floor(Math.random() * arrayBanners.length);
     return indice;
 }
 
 const pintarBanner = (array) =>
     {
-
-               
-        const indice = aleatorio (array);
+        const indice = aleatorio (arrayBanners);
         const elemento = arrayBanners[indice];
-
         imagenBanner.src = elemento.src;
         imagenBanner.alt = elemento.src;
-
-        
     }
        
 
@@ -187,4 +184,4 @@ pintarBanner()
 pintarCards()
 // pintarCards()
 pintarDestinos()
-console.log(aleatorio)
+});
