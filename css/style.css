@@ -6,6 +6,10 @@
     -moz-box-sizing: border-box;
 }
 
+img {
+    width: 100%;
+    border-radius: 10px;
+}
 
 body {
   margin: 0;
@@ -15,8 +19,13 @@ body {
 
 header {
   width: 100%;
+  padding: 20px;
   overflow: hidden;
   box-sizing: content-box;
+}
+
+h2{
+    padding: 20px;
 }
 
 header img {
@@ -36,6 +45,7 @@ header img {
 .container {
     width: 95%;
     margin: 0 auto;
+    padding: 20px;
         
 }
 
@@ -45,14 +55,20 @@ header img {
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
     transform: scale(1.03);
+    box-sizing: content-box;
+   
     
 }
 
+footer{
+    position: fixed;
+    display: flex;
+}
 
 /* ===============================
             768px

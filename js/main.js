@@ -10,6 +10,7 @@ const cajaCardsViajes = document.querySelector('#recomendados .flexContainer')//
 
 /* Acceder al elemento del DOM para crear añadir los options */
 const opcionesDest = document.querySelector('#destinos select');
+const selecDestinos=document.querySelector('#opcionesDestinos')
 
 const urlBase = "assets";//todo lo que se reutilice hay qiue meter en variables, se crea la variable con la raíz de la capreta porque puede cambiar//
 const fragment = document.createDocumentFragment();
@@ -97,6 +98,7 @@ const arrayDestinos = [
 
 
 /* EVENTOS */
+
 
 /* FUNCIONES */
 
